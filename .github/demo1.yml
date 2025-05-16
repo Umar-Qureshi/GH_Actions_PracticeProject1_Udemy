@@ -5,7 +5,7 @@ on:
       - opened
   workflow_dispatch:
 jobs:
-  output-info:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Output event details
