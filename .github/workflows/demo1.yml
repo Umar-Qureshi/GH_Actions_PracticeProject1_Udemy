@@ -3,13 +3,24 @@ on:
   pull_request:
     types:
       - opened
+    branches:
+      - main
+      - 'dev-*' #for ex. dev-new dev-this-is-new
+      - 'feat/**' # for ex. feat/new feat/new/button
   workflow_dispatch:
+  push:
+    branches:
+      - main
+      - 'dev-*' #for ex. dev-new dev-this-is-new
+      - 'feat/**' # for ex. feat/new feat/new/button
+    paths-ignore:
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Output event details
-        run: echo '${{ toJson(github.event) }}'
+        run: echo "${{ toJson(github.event) }}"
       - name: Get code
         uses: actions/checkout@v3
       - name: Install dependencies
